@@ -21,7 +21,7 @@
     margin-right: 8px;
   }
   :global(.ant-dropdown-menu-item) {
-    min-width: 160px;
+    min-width: 140px;
   }
 }
 
@@ -40,6 +40,7 @@
   float: right;
   height: 100%;
   overflow: hidden;
+  margin-left: auto;
   .action {
     display: inline-block;
     height: 100%;
@@ -81,9 +82,11 @@
     > i {
       color: rgba(255, 255, 255, 0.85);
     }
-    &:hover,
-    &:global(.opened) {
+    &:hover{
       background: @primary-color;
+    }
+    &:global(.opened) {
+      background: transparent;
     }
   }
 }

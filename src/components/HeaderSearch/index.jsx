@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import styles from './index.less';
+
 export default class HeaderSearch extends Component {
   static defaultProps = {
     defaultActiveFirstOption: false,
@@ -45,6 +46,7 @@ export default class HeaderSearch extends Component {
       this.debouncePressEnter();
     }
   };
+
   onChange = value => {
     if (typeof value === 'string') {
       const { onSearch, onChange } = this.props;
@@ -61,28 +63,30 @@ export default class HeaderSearch extends Component {
       }
     }
   };
+
   enterSearchMode = () => {
     const { onVisibleChange } = this.props;
+    const { searchMode } = this.state;
     onVisibleChange(true);
     this.setState(
       {
-        searchMode: true,
+        searchMode: !searchMode,
       },
       () => {
-        const { searchMode } = this.state;
-
         if (searchMode && this.inputRef) {
           this.inputRef.focus();
         }
       },
     );
   };
+
   leaveSearchMode = () => {
     this.setState({
       searchMode: false,
       value: '',
     });
   };
+
   debouncePressEnter = () => {
     const { onPressEnter } = this.props;
     const { value } = this.state;
@@ -100,7 +104,6 @@ export default class HeaderSearch extends Component {
     return (
       <span
         className={classNames(className, styles.headerSearch)}
-        onClick={this.enterSearchMode}
         onTransitionEnd={({ propertyName }) => {
           if (propertyName === 'width' && !searchMode) {
             const { onVisibleChange } = this.props;
@@ -108,7 +111,7 @@ export default class HeaderSearch extends Component {
           }
         }}
       >
-        <Icon type="search" key="Icon" />
+        <Icon type="search" key="Icon" onClick={this.enterSearchMode} />
         <AutoComplete
           key="AutoComplete"
           {...restProps}
@@ -123,7 +126,6 @@ export default class HeaderSearch extends Component {
             aria-label={placeholder}
             placeholder={placeholder}
             onKeyDown={this.onKeyDown}
-            onBlur={this.leaveSearchMode}
           />
         </AutoComplete>
       </span>

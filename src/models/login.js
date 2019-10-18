@@ -1,8 +1,12 @@
-import { routerRedux } from 'dva/router';
+
 import { stringify } from 'querystring';
+import { routerRedux } from 'dva/router';
 import { fakeAccountLogin, getFakeCaptcha } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+import { reloadAuthorized } from '@/utils/Authorized';
+
+
 const Model = {
   namespace: 'login',
   state: {
@@ -14,9 +18,10 @@ const Model = {
       yield put({
         type: 'changeLoginStatus',
         payload: response,
-      }); // Login successfully
-
+      });
+      // Login successfully
       if (response.status === 'ok') {
+        reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params;
@@ -31,8 +36,7 @@ const Model = {
               redirect = redirect.substr(redirect.indexOf('#') + 1);
             }
           } else {
-            window.location.href = redirect;
-            return;
+            redirect = null;
           }
         }
 

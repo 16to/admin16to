@@ -9,9 +9,10 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: '管理后台',
   pwa: false,
   iconfontUrl: '',
   collapse: true,
   language: 'zh-CN',
+  copyright:"16to.com 一路向前"
 };
