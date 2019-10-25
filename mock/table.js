@@ -2,193 +2,193 @@ import Mock from 'mockjs';
 
 let tableList = [{
   id: Mock.Random.id(),
-  name: 'ES0328',
+  title: 'ES0328',
   type: 'MySql',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0329',
+  title: 'ES0329',
   type: 'MySql',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0330',
+  title: 'ES0330',
   type: 'MySql',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0331',
+  title: 'ES0331',
   type: 'MySql',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0332',
+  title: 'ES0332',
   type: 'MySql',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
 }, {
   id: Mock.Random.id(),
-  name: 'ES0333',
+  title: 'ES0333',
   type: 'Redis',
   creator: Mock.mock('@string("lower", 5)'),
   addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
@@ -223,9 +223,10 @@ function deleteTable(req, res) {
 function updateTable(req, res) {
   tableList.forEach((item, k) => {
     if (item.id === req.params.id) {
-      tableList[k].name = req.body.name;
-      tableList[k].type = req.body.type;
-      tableList[k].creator = req.body.creator;
+      tableList[k].title = req.body.title;
+      tableList[k].content = req.body.content;
+      tableList[k].type = 'redis';
+      tableList[k].creator = 'zhangjieupdate';
     }
   });
   const body = {
@@ -243,7 +244,8 @@ function updateTable(req, res) {
 function addTable(req, res) {
   const item = {
     id: Mock.Random.id(),
-    name: req.body.title,
+    title: req.body.title,
+    content: req.body.content,
     type: 'redis',
     creator: 'zhangjie',
     addtime: new Date().getTime() - Mock.mock('@natural(1000, 6000)'),
@@ -260,9 +262,17 @@ function addTable(req, res) {
   return res.json(body);
 }
 
+// 获取table id info
+function getTableInfo(req, res) {
+  const info = tableList.filter(item => item.id === req.params.id);
+  return res.json(info[0]);
+}
+
 export default {
   // 获取table list
   'GET /api/table': (req, res) => getTable(req, res),
+  // 获取table id info
+  'GET /api/table/:id': (req, res) => getTableInfo(req, res),
   // 删除table id
   'DELETE /api/table/:id': (req, res) => deleteTable(req, res),
   // 更新table id

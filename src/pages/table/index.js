@@ -18,9 +18,9 @@ class List extends PureComponent {
   // 定义表格头
   columns = [
     {
-      title: '数据名称',
-      dataIndex: 'name',
-      key: 'name',
+      title: '数据标题',
+      dataIndex: 'title',
+      key: 'title',
     },
     {
       title: '创建人',

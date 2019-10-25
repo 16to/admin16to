@@ -7,13 +7,12 @@ export async function getList(params) {
 }
 
 // 获取id数据
-export async function getInfo(id, params) {
-  return request(`/api/table/${id}?${stringify(params)}`);
+export async function getInfo(id) {
+  return request(`/api/table/${id}`);
 }
 
 // 新增数据
 export async function add(data) {
-  console.log(data);
   return request('/api/table', {
     method: 'POST',
     data,

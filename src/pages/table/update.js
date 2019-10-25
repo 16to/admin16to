@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Card } from 'antd';
+import { Card, Form, Button, message } from 'antd';
 import { connect } from 'dva';
 import router from 'umi/router';
+import BasicForm from './form';
 
 // 链接dva的状态数据
 @connect(({ table, loading }) => ({
@@ -13,36 +14,63 @@ class Update extends PureComponent {
   }
 
   // DOM挂载之后
-  componentDidMount() {
+  componentWillMount() {
+    this.getInfo();
   }
 
-  // 校验表单数据
-  getTableData = () => {
-    const { dispatch } = this.props;
+  // 获取id的数据
+  getInfo = () => {
+    const { dispatch, match } = this.props;
+    const { id } = match.params;
     dispatch({
-      type: 'table/select',
-      params: this.params,
+      type: 'table/selectId',
+      id,
     });
   }
 
-  // 发送修改的请求
-  sendUpdate = data => {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'table/add',
-      data,
-    }).then(() => {
-      router.push('/table');
+  // 发送添加的请求
+  sendUpdate = () => {
+    const { dispatch, match } = this.props;
+    const { id } = match.params;
+    const { form } = this.updateForm.props;
+    form.validateFields((err, data) => {
+      if (err) {
+        return;
+      }
+      dispatch({
+        type: 'table/update',
+        id,
+        data,
+      }).then(() => {
+        message.success('保存成功！');
+      })
     })
   }
 
-  // jsx渲染
+  // 返回
+  backBtn = () => {
+    router.push('/table')
+  }
+
   render() {
-    // 页面内容
-    const { loading } = this.props;
+    const { loading, info } = this.props;
+    const submitFormLayout = {
+      wrapperCol: {
+        xs: { span: 24, offset: 0 },
+        sm: { span: 14, offset: 4 },
+      },
+    };
     return (
       <Card>
-        123
+        <BasicForm type="update" updateData={info} key={info.id} wrappedComponentRef={ref => { this.updateForm = ref }} />
+        <Form.Item {...submitFormLayout}>
+          <Button type="primary" onClick={this.sendUpdate} loading={loading}>
+            提 交
+          </Button>
+          <Button onClick={this.backBtn} style={{ marginLeft: 8 }}>
+            返 回
+          </Button>
+        </Form.Item>
       </Card>
     );
   }

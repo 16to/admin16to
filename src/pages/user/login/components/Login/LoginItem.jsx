@@ -120,7 +120,7 @@ class WrapFormItem extends Component {
         <FormItem>
           <Row gutter={8}>
             <Col span={16}>
-              {getFieldDecorator(name, options)(<Input {...customProps} {...inputProps} />)}
+              {(name, options)(<Input {...customProps} {...inputProps} />)}
             </Col>
             <Col span={8}>
               <Button

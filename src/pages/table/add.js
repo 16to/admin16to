@@ -17,25 +17,14 @@ class Add extends PureComponent {
   componentDidMount() {
   }
 
-  // 校验表单数据
-  handleAdd = () => {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'table/select',
-      params: this.params,
-    });
-  }
-
   // 发送添加的请求
   sendAdd = () => {
     const { form } = this.addForm.props;
-    console.log(form);
+    const { dispatch } = this.props;
     form.validateFields((err, data) => {
       if (err) {
         return;
       }
-      console.log(data);
-      const { dispatch } = this.props;
       dispatch({
         type: 'table/add',
         data,
@@ -55,7 +44,7 @@ class Add extends PureComponent {
     const submitFormLayout = {
       wrapperCol: {
         xs: { span: 24, offset: 0 },
-        sm: { span: 10, offset: 7 },
+        sm: { span: 14, offset: 4 },
       },
     };
     return (
