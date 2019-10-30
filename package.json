@@ -6,7 +6,8 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
-    "start": "umi dev"
+    "start": "umi dev",
+    "server": "node ./server/app.js"
   },
   "browserslist": [
     "> 1%",
@@ -17,11 +18,15 @@
     "@ant-design/pro-layout": "^4.5.9",
     "@antv/data-set": "^0.10.2",
     "antd": "^3.20.0",
+    "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.49.2",
     "dva": "^2.4.1",
+    "express": "^4.17.1",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
     "omit.js": "^1.0.2",
     "path-to-regexp": "^3.0.0",
     "qs": "^6.7.0",
@@ -58,7 +63,6 @@
     "cross-port-killer": "^1.1.1",
     "enzyme": "^3.9.0",
     "eslint": "^5.16.0",
-    "express": "^4.17.1",
     "gh-pages": "^2.0.1",
     "husky": "^3.0.0",
     "import-sort-cli": "^6.0.0",
