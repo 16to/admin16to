@@ -1,13 +1,14 @@
 // 引入所有的请求接口
-import { getList, getInfo, del, update, add, deleteImg } from '@/services/table';
+import { getList, getLog, delLog, getInfo, del, update, add } from '@/services/account';
 
 export default {
   // 空间名称
-  namespace: 'table',
+  namespace: 'account',
 
   // 状态值
   state: {
     list: [],
+    log: [],
     info: {},
   },
 
@@ -22,11 +23,25 @@ export default {
       });
       return response;
     },
+    // 查日志
+    *log({ params }, { call, put }) {
+      const response = yield call(getLog, params);
+      yield put({
+        type: 'queryLog',
+        payload: response,
+      });
+      return response;
+    },
+    *clearlog(_, { call, put }) {
+      const response = yield call(delLog);
+      yield put({
+        type: 'clearLog',
+        payload: response,
+      });
+      return response;
+    },
     // 查Id
     *selectId({ id }, { call, put }) {
-      yield put({
-        type: 'clearInfo',
-      });
       const response = yield call(getInfo, id);
       yield put({
         type: 'queryInfo',
@@ -49,14 +64,10 @@ export default {
       });
       return response;
     },
-    // 删
-    *deleteImg({ id }, { call }) {
-      const response = yield call(deleteImg, id);
-      return response;
-    },
     // 改
     *update({ id, data }, { call, put }) {
       const response = yield call(update, id, data);
+
       yield put({
         type: 'selectId',
         id,
@@ -73,16 +84,22 @@ export default {
         list: action.payload,
       };
     },
+    queryLog(state, action) {
+      return {
+        ...state,
+        log: action.payload,
+      };
+    },
+    clearLog(state) {
+      return {
+        ...state,
+        log: [],
+      };
+    },
     queryInfo(state, action) {
       return {
         ...state,
         info: action.payload,
-      };
-    },
-    clearInfo(state) {
-      return {
-        ...state,
-        info: {},
       };
     },
   },

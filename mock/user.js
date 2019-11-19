@@ -7,7 +7,7 @@ export default {
   'GET /api/currentUser': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-    userid: '00000001',
+    id: '00000001',
     email: 'antdesign@alipay.com',
     signature: '海纳百川，有容乃大',
     title: '交互专家',
@@ -75,10 +75,10 @@ export default {
       address: 'Sidney No. 1 Lake Park',
     },
   ],
-  'POST /api/login/account': (req, res) => {
-    const { password, userName, type } = req.body;
+  'POST /api/login': (req, res) => {
+    const { password, username, type } = req.body;
 
-    if (password === 'admin' && userName === 'admin') {
+    if (password === 'admin' && username === 'admin') {
       res.send({
         status: 'ok',
         type,
@@ -87,7 +87,7 @@ export default {
       return;
     }
 
-    if (password === 'admin' && userName === 'user') {
+    if (password === 'admin' && username === 'user') {
       res.send({
         status: 'ok',
         type,

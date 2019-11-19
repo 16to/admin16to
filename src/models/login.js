@@ -1,10 +1,13 @@
 
 import { stringify } from 'querystring';
 import { routerRedux } from 'dva/router';
-import { fakeAccountLogin, getFakeCaptcha } from '@/services/login';
+import { accountLogin } from '@/services/login';
+import { formatMessage } from 'umi-plugin-react/locale';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+import Cookies from 'js-cookie';
 import { reloadAuthorized } from '@/utils/Authorized';
+import { message } from 'antd';
 
 
 const Model = {
@@ -14,7 +17,7 @@ const Model = {
   },
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(accountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -39,22 +42,29 @@ const Model = {
             redirect = null;
           }
         }
-
+        // set cookie
+        Cookies.set('token', response.token, { expires: 30 });
         yield put(routerRedux.replace(redirect || '/'));
+      }
+      // Login error
+      if (response.status === 'error') {
+        message.error(formatMessage({
+          id: 'user-login.login.message-invalid-credentials',
+        }))
       }
     },
 
-    *getCaptcha({ payload }, { call }) {
-      yield call(getFakeCaptcha, payload);
-    },
-
     *logout(_, { put }) {
+      yield put({
+        type: 'user/clearCurrent',
+      });
+      // clear cookie
+      Cookies.set('token', undefined, { expires: -1 });
       const { redirect } = getPageQuery(); // redirect
-
-      if (window.location.pathname !== '/user/login' && !redirect) {
+      if (window.location.pathname !== '/login' && !redirect) {
         yield put(
           routerRedux.replace({
-            pathname: '/user/login',
+            pathname: '/login',
             search: stringify({
               redirect: window.location.href,
             }),

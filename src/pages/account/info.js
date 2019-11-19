@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react';
-import { Modal, Button, Table, Divider, Card, Input } from 'antd';
+import { Modal, Button, Table, Divider, Card, Input, Typography } from 'antd';
 import { connect } from 'dva';
 import moment from 'moment';
 import router from 'umi/router';
 
 const { Search } = Input;
+const { Text } = Typography;
 
 // 链接dva的状态数据
-@connect(({ table, loading }) => ({
-  list: table.list,
-  loading: loading.effects['table/select'],
+@connect(({ account, loading }) => ({
+  list: account.list,
+  loading: loading.effects['account/select'],
 }))
 class List extends PureComponent {
   state = {
@@ -18,14 +19,21 @@ class List extends PureComponent {
   // 定义表格头
   columns = [
     {
-      title: '数据标题',
-      dataIndex: 'title',
-      key: 'title',
+      title: '管理员名称',
+      dataIndex: 'username',
+      key: 'username',
     },
     {
-      title: '创建人',
-      dataIndex: 'creator',
-      key: 'creator',
+      title: '登录次数',
+      dataIndex: 'logincount',
+      key: 'logincount',
+    },
+    {
+      title: '最后登陆时间',
+      dataIndex: 'lasttime',
+      key: 'lasttime',
+      sorter: (a, b) => a.lasttime - b.lasttime,
+      render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
     },
     {
       title: '创建时间',
@@ -35,11 +43,11 @@ class List extends PureComponent {
       render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
     },
     {
-      title: '最后修改时间',
-      dataIndex: 'updatetime',
-      key: 'updatetime',
-      sorter: (a, b) => a.updatetime - b.updatetime,
-      render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
+      title: '状态',
+      dataIndex: 'state',
+      key: 'state',
+      sorter: (a, b) => a.state - b.state,
+      render: val => <span>{val ? <Text type="success">启用</Text> : <Text type="danger">关闭</Text>}</span>,
     },
     {
       title: '操作',
@@ -69,7 +77,7 @@ class List extends PureComponent {
   getTableData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'table/select',
+      type: 'account/select',
       params: this.params,
     });
   }
@@ -91,7 +99,7 @@ class List extends PureComponent {
   deleteBtn = record => {
     Modal.confirm({
       title: '删除数据',
-      content: <div>此操作将会删除<b>{record.title}</b>的相关配置<br />注意：删除之后将无法恢复。</div>,
+      content: <div>此操作将会删除<b>{record.username}</b>的相关配置<br />注意：删除之后将无法恢复。</div>,
       okText: '确认',
       cancelText: '取消',
       width: 400,
@@ -103,7 +111,7 @@ class List extends PureComponent {
   sendDeleteId = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'table/delete',
+      type: 'account/delete',
       id,
     });
   }
@@ -119,12 +127,12 @@ class List extends PureComponent {
 
   // 添加按钮
   addBtn = () => {
-    router.push('/table/add');
+    router.push('/account/add');
   }
 
   // 修改按钮
   updateBtn = id => {
-    router.push(`/table/update/${id}`);
+    router.push(`/account/update/${id}`);
   }
 
   render() {
@@ -142,7 +150,7 @@ class List extends PureComponent {
     return (
       <Card>
         <p>
-          <Button type="primary" icon="plus" className="pull-right" onClick={this.addBtn}>新建数据</Button>
+          <Button type="primary" icon="plus" className="pull-right" onClick={this.addBtn}>新建管理员</Button>
           <Search
             placeholder="请输入关键词"
             onSearch={value => this.search(value)}

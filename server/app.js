@@ -5,20 +5,29 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const bodyparser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // router
 const tableRouter = require('./routes/table');
+const loginRouter = require('./routes/login');
 const uploadRouter = require('./routes/upload');
+const accountRouter = require('./routes/account');
 
 // node server port
 const PORT = 8002;
 const app = express();
 app.use(bodyparser.json());
+app.use(cookieParser());
 const httpServer = http.createServer(app);
 
 // set api
 app.use('/api/table', tableRouter);
+app.use('/api/login', loginRouter);
 app.use('/api/upload', uploadRouter);
+app.use('/api/account', accountRouter);
+
+// set upload
+app.use('/upload', express.static(path.join(__dirname, '../upload')));
 
 // set dist
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -26,11 +35,6 @@ app.use(express.static(path.join(__dirname, '../dist')));
 // set index
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-});
-
-// set upload
-app.get('/upload/*', (req, res) => {
-  res.sendFile(path.join(__dirname, req.url));
 });
 
 // bind port

@@ -20,9 +20,24 @@ const Query = (sql, callback) => {
 const Select = (table, where, callback) => {
   let con = '';
   for (const j in where) {
-    if (typeof (where[j]) === 'string') { con += `${j}='${where[j]}' AND `; } else {
+    // 如果是字符串
+    if (typeof (where[j]) === 'string' && j !== 'orderBy' && j !== 'limit' && j !== 'like') {
+      con += `${j}='${where[j]}' AND `
+    }
+    // 如果是数字
+    if (typeof (where[j]) === 'number') {
       con += `${j}=${where[j]} AND `;
     }
+    // 增加like的搜索功能
+    if (j === 'like') {
+      con += `${where[j]} AND `;
+    }
+    // 增加orderBy排序功能，条件放在后面
+    if (j === 'orderBy') {
+      con = con.slice(0, -5);
+      con += ` ORDER BY ${where[j]} AND `;
+    }
+    // 增加limit功能，条件放在最后面
   }
   con = con.slice(0, -5);
   const sql = `SELECT * FROM ${table} WHERE ${con}`;
@@ -66,7 +81,10 @@ const Update = (table, datas, where, callback) => {
   let sets = '';
   let con = '';
   for (const k in datas) {
-    if (typeof (datas[k]) === 'string') { sets += `${k}='${datas[k]}',`; } else {
+    // 增加字段自增的功能
+    if (k === 'addStep') {
+      sets += `${datas[k]},`;
+    } else if (typeof (datas[k]) === 'string') { sets += `${k}='${datas[k]}',`; } else {
       sets += `${k}=${datas[k]},`;
     }
   }

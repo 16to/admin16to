@@ -109,15 +109,15 @@ class Login extends Component {
                 }),
               )}
             <UserName
-              name="userName"
+              name="username"
               placeholder={`${formatMessage({
-                id: 'user-login.login.userName',
+                id: 'user-login.login.username',
               })}: admin`}
               rules={[
                 {
                   required: true,
                   message: formatMessage({
-                    id: 'user-login.userName.required',
+                    id: 'user-login.username.required',
                   }),
                 },
               ]}
@@ -144,63 +144,6 @@ class Login extends Component {
               }}
             />
           </Tab>
-          {/* <Tab
-            key="mobile"
-            tab={formatMessage({
-              id: 'user-login.login.tab-login-mobile',
-            })}
-          >
-            {status === 'error' &&
-              loginType === 'mobile' &&
-              !submitting &&
-              this.renderMessage(
-                formatMessage({
-                  id: 'user-login.login.message-invalid-verification-code',
-                }),
-              )}
-            <Mobile
-              name="mobile"
-              placeholder={formatMessage({
-                id: 'user-login.phone-number.placeholder',
-              })}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'user-login.phone-number.required',
-                  }),
-                },
-                {
-                  pattern: /^1\d{10}$/,
-                  message: formatMessage({
-                    id: 'user-login.phone-number.wrong-format',
-                  }),
-                },
-              ]}
-            />
-            <Captcha
-              name="captcha"
-              placeholder={formatMessage({
-                id: 'user-login.verification-code.placeholder',
-              })}
-              countDown={120}
-              onGetCaptcha={this.onGetCaptcha}
-              getCaptchaButtonText={formatMessage({
-                id: 'user-login.form.get-captcha',
-              })}
-              getCaptchaSecondText={formatMessage({
-                id: 'user-login.captcha.second',
-              })}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'user-login.verification-code.required',
-                  }),
-                },
-              ]}
-            />
-          </Tab> */}
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
               <FormattedMessage id="user-login.login.remember-me" />

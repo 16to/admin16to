@@ -1,12 +1,12 @@
 export default [
   {
-    path: '/user',
+    path: '/login',
     component: '../layouts/UserLayout',
     routes: [
       {
         name: 'login',
-        path: '/user/login',
-        component: './user/login',
+        path: '/login',
+        component: './login',
       },
     ],
   },
@@ -52,6 +52,46 @@ export default [
                 name:"update",
                 hideInMenu: true,
                 component: './table/update',
+              },
+              {
+                component: './404',
+              },
+            ]
+          },
+          // 管理员信息
+          {
+            path: '/account',
+            hideInMenu: true,
+            name:"account",
+            component: '../layouts/ContentLayout',
+            routes: [
+              {
+                path: '/account',
+                redirect: '/account/info',
+              },
+              {
+                path: '/account/info',
+                name: 'admininfo',
+                hideInMenu: true,
+                component: './account/info',
+              },
+              {
+                path: '/account/log',
+                hideInMenu: true,
+                name: 'adminlog',
+                component: './account/log',
+              },
+              {
+                path: '/account/add',
+                name:"add",
+                hideInMenu: true,
+                component: './account/add',
+              },
+              {
+                path: '/account/update/:id',
+                name:"update",
+                hideInMenu: true,
+                component: './account/update',
               },
               {
                 component: './404',

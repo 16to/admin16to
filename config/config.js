@@ -5,9 +5,15 @@ import webpackPlugin from './plugin.config';
 import routerConfig from './router.config';
 
 const { primaryColor } = defaultSettings;
+let proxyUrl="";
 
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
 const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
+
+if(process.env.APP_TYPE==="proxy"){
+  proxyUrl=process.argv[3];
+}
+
 const plugins = [
   [
     'umi-plugin-react',
@@ -94,13 +100,14 @@ export default {
     },
   },
   chainWebpack: webpackPlugin,
-  /*
   proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
+    '/api': {
+      target:proxyUrl,
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+    },
+    '/upload': {
+      target:proxyUrl,
+      changeOrigin: true,
     },
   },
-  */
 };

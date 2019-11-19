@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Redirect } from 'umi';
+import router from 'umi/router';
+import Cookies from 'js-cookie';
 import { stringify } from 'querystring';
 import PageLoading from '@/components/PageLoading';
 
@@ -14,32 +15,29 @@ class SecurityLayout extends React.Component {
       isReady: true,
     });
     const { dispatch } = this.props;
-
-    if (dispatch) {
-      dispatch({
-        type: 'user/fetchCurrent',
-      });
-    }
+    dispatch({
+      type: 'user/fetchCurrent',
+    }).then(res => {
+      // 判断是否登录
+      const token = Cookies.get('token');
+      const isLogin = token && res && res.id;
+      if (!isLogin) {
+        const queryString = stringify({
+          redirect: window.location.href,
+        });
+        router.push(`/login?${queryString}`);
+      } else {
+        Cookies.set('uid', res.id);
+      }
+    })
   }
 
   render() {
-    // const { isReady } = this.state;
-    const { children, loading, currentUser } = this.props;
-    // // 你可以把它替换成你自己的登录认证规则（比如判断 token 是否存在）
-
-    // const isLogin = currentUser && currentUser.userid;
-    // const queryString = stringify({
-    //   redirect: window.location.href,
-    // });
-
-    // if ((!isLogin && loading) || !isReady) {
-    //   return <PageLoading />;
-    // }
-
-    // if (!isLogin) {
-    //   return <Redirect to={`/user/login?${queryString}`}></Redirect>;
-    // }
-
+    const { isReady } = this.state;
+    const { children, loading } = this.props;
+    if (loading || !isReady) {
+      return <PageLoading />;
+    }
     return children;
   }
 }
