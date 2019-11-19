@@ -7,11 +7,14 @@ const path = require('path');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+// const route = require('./route');
 // router
 const tableRouter = require('./routes/table');
 const loginRouter = require('./routes/login');
 const uploadRouter = require('./routes/upload');
 const accountRouter = require('./routes/account');
+const skillRouter = require('./routes/skill');
+
 
 // node server port
 const PORT = 8002;
@@ -25,6 +28,7 @@ app.use('/api/table', tableRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/account', accountRouter);
+app.use('/api/skill', skillRouter);
 
 // set upload
 app.use('/upload', express.static(path.join(__dirname, '../upload')));

@@ -152,9 +152,20 @@ class BasicForm extends PureComponent {
             ],
           })(<Input placeholder="请输入标题" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label="创建人">
-          {getFieldDecorator('creator', {
-            initialValue: updateData ? updateData && updateData.creator : undefined,
+        <Form.Item {...formItemLayout} label="作者">
+          {getFieldDecorator('author', {
+            initialValue: updateData ? updateData && updateData.title : '16to',
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
+          })(<Input placeholder="请输入标题" />)}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="类型">
+          {getFieldDecorator('type', {
+            initialValue: updateData ? updateData && updateData.creator : 'javascript',
             rules: [
               {
                 required: true,
@@ -163,7 +174,7 @@ class BasicForm extends PureComponent {
             ],
           })(
             <Select placeholder="请选择创建人" showSearch>
-              <Select.Option value="zj">zj</Select.Option>
+              <Select.Option value="javascript">javascript</Select.Option>
               <Select.Option value="hz">hz</Select.Option>
             </Select>,
           )}

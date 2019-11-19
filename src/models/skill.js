@@ -1,9 +1,9 @@
 // 引入所有的请求接口
-import { getList, getInfo, del, update, add } from '@/services/table';
+import { getList, getInfo, del, update, add } from '@/services/skill';
 
 export default {
   // 空间名称
-  namespace: 'table',
+  namespace: 'skill',
 
   // 状态值
   state: {

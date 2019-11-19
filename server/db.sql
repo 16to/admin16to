@@ -31,3 +31,22 @@ CREATE TABLE `demo_loginlog` (
   `loginip` char(20) DEFAULT '127.0.0.1',
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `demo_skill`;
+CREATE TABLE `demo_skill` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `author` varchar(20) NOT NULL,
+  `type` int(5) NOT NULL,
+  `tag` int(5) NOT NULL,
+  `click` int(11) DEFAULT '0',
+  `sort` int(11) DEFAULT '0',
+  `content` text,
+  `updatetime` int(10) NOT NULL DEFAULT '0',
+  `addtime` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`),
+  KEY `tag` (`tag`),
+  KEY `sort` (`sort`),
+  KEY `click` (`click`)
+) DEFAULT CHARSET=utf8;
