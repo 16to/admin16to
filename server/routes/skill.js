@@ -27,11 +27,13 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const insertData = [];
   insertData.title = req.body.title;
-  insertData.addtime = new Date().getTime();
+  insertData.addtime = Date.parse(new Date()) / 1000;
   insertData.updatetime = insertData.addtime;
   insertData.content = escape(req.body.content);
-  insertData.creator = req.body.creator;
-  insertData.imagename = req.body.imagename;
+  insertData.author = req.body.author;
+  insertData.type = req.body.type;
+  insertData.tag = req.body.tag;
+  insertData.sort = req.body.sort;
   db.Insert('demo_skill', insertData, (err, response) => {
     res.send(response);
   });
@@ -42,10 +44,12 @@ router.put('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
   updateData.title = req.body.title;
-  updateData.updatetime = new Date().getTime();
+  updateData.updatetime = Date.parse(new Date()) / 1000;
   updateData.content = escape(req.body.content);
-  updateData.creator = req.body.creator;
-  updateData.imagename = req.body.imagename;
+  updateData.author = req.body.author;
+  updateData.type = req.body.type;
+  updateData.tag = req.body.tag;
+  updateData.sort = req.body.sort;
   db.Update('demo_skill', updateData, con, (err, response) => {
     res.send(response);
   });

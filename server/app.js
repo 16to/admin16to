@@ -14,6 +14,7 @@ const loginRouter = require('./routes/login');
 const uploadRouter = require('./routes/upload');
 const accountRouter = require('./routes/account');
 const skillRouter = require('./routes/skill');
+const sysconfigRouter = require('./routes/sysconfig');
 
 
 // node server port
@@ -29,6 +30,7 @@ app.use('/api/login', loginRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/account', accountRouter);
 app.use('/api/skill', skillRouter);
+app.use('/api/sysconfig', sysconfigRouter);
 
 // set upload
 app.use('/upload', express.static(path.join(__dirname, '../upload')));

@@ -7,13 +7,13 @@ import router from 'umi/router';
 const { Search } = Input;
 
 // 链接dva的状态数据
-@connect(({ skill, loading }) => ({
+@connect(({ skill, sysconfig, loading }) => ({
   list: skill.list,
+  sysconfig: sysconfig.sysconfig,
   loading: loading.effects['skill/select'],
 }))
 class List extends PureComponent {
-  state = {
-  }
+  state = {};
 
   // 定义表格头
   columns = [
@@ -31,11 +31,21 @@ class List extends PureComponent {
       title: '类型',
       dataIndex: 'type',
       key: 'type',
+      render: val => (
+        <span>
+          {this.props.sysconfig.skillType && this.props.sysconfig.skillType[val]}
+        </span>
+      ),
     },
     {
       title: '标签',
       dataIndex: 'tag',
       key: 'tag',
+      render: val => (
+        <span>
+          {this.props.sysconfig.skillTag && this.props.sysconfig.skillTag[val]}
+        </span>
+      ),
     },
     {
       title: '排序',
@@ -47,14 +57,14 @@ class List extends PureComponent {
       dataIndex: 'addtime',
       key: 'addtime',
       sorter: (a, b) => a.addtime - b.addtime,
-      render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
+      render: val => <span>{moment(val * 1000).format('YYYY-MM-DD HH:mm:ss')}</span>,
     },
     {
       title: '最后更新时间',
       dataIndex: 'updatetime',
       key: 'updatetime',
       sorter: (a, b) => a.updatetime - b.updatetime,
-      render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
+      render: val => <span>{moment(val * 1000).format('YYYY-MM-DD HH:mm:ss')}</span>,
     },
     {
       title: '操作',
@@ -62,9 +72,21 @@ class List extends PureComponent {
       width: '180px',
       render: (_text, record) => (
         <span>
-          <Button onClick={() => this.updateBtn(record.id)} shape="circle" icon="edit" title="编辑" size="small" />
+          <Button
+            onClick={() => this.updateBtn(record.id)}
+            shape="circle"
+            icon="edit"
+            title="编辑"
+            size="small"
+          />
           <Divider type="vertical" />
-          <Button onClick={() => this.deleteBtn(record)} shape="circle" icon="delete" title="删除" size="small" />
+          <Button
+            onClick={() => this.deleteBtn(record)}
+            shape="circle"
+            icon="delete"
+            title="删除"
+            size="small"
+          />
         </span>
       ),
     },
@@ -87,7 +109,7 @@ class List extends PureComponent {
       type: 'skill/select',
       params: this.params,
     });
-  }
+  };
 
   // 页码操作
   handlePainationChange = current => {
@@ -100,13 +122,19 @@ class List extends PureComponent {
     this.params.page = current;
     this.params.pageSize = size;
     this.getTableData();
-  }
+  };
 
   // 删除数据按钮
   deleteBtn = record => {
     Modal.confirm({
       title: '删除数据',
-      content: <div>此操作将会删除<b>{record.title}</b>的相关数据<br />注意：删除之后将无法恢复。</div>,
+      content: (
+        <div>
+          此操作将会删除<b>{record.title}</b>的相关数据
+          <br />
+          注意：删除之后将无法恢复。
+        </div>
+      ),
       okText: '确认',
       cancelText: '取消',
       width: 400,
@@ -121,7 +149,7 @@ class List extends PureComponent {
       type: 'skill/delete',
       id,
     });
-  }
+  };
 
   // 搜索
   search = value => {
@@ -130,17 +158,17 @@ class List extends PureComponent {
       this.params.search = undefined;
     }
     this.getTableData();
-  }
+  };
 
   // 添加按钮
   addBtn = () => {
     router.push('/skill/add');
-  }
+  };
 
   // 修改按钮
   updateBtn = id => {
     router.push(`/skill/update/${id}`);
-  }
+  };
 
   render() {
     const { list, loading } = this.props;
@@ -157,7 +185,14 @@ class List extends PureComponent {
     return (
       <Card>
         <p>
-          <Button type="primary" icon="plus" className="pull-right" onClick={this.addBtn}>新建技术积累</Button>
+          <Button
+            type="primary"
+            icon="plus"
+            className="pull-right"
+            onClick={this.addBtn}
+          >
+            新建技术积累
+          </Button>
           <Search
             placeholder="请输入关键词"
             onSearch={value => this.search(value)}

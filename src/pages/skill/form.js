@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Input, Form, Select, Icon, Drawer } from 'antd';
+import { Input, Form, Select, Icon, Drawer, InputNumber } from 'antd';
 import { connect } from 'dva';
 import ReactMarkdown from 'react-markdown';
 import { Controlled as CodeMirror } from 'react-codemirror2';
@@ -8,7 +8,9 @@ require('codemirror/lib/codemirror.css');
 require('codemirror/theme/monokai.css');
 require('codemirror/mode/markdown/markdown');
 
-@connect()
+@connect(({ sysconfig }) => ({
+  sysconfig: sysconfig.sysconfig,
+}))
 @Form.create()
 class BasicForm extends PureComponent {
   state = {
@@ -53,7 +55,7 @@ class BasicForm extends PureComponent {
   // jsx渲染
   render() {
     // 页面内容
-    const { updateData, form: { getFieldDecorator } } = this.props;
+    const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
     const { source, viewVisible } = this.state;
     const formItemLayout = {
       labelCol: {
@@ -96,7 +98,7 @@ class BasicForm extends PureComponent {
         </Form.Item>
         <Form.Item {...formItemLayout} label="类型">
           {getFieldDecorator('type', {
-            initialValue: updateData ? updateData && updateData.creator : 'javascript',
+            initialValue: updateData ? updateData && updateData.type : 0,
             rules: [
               {
                 required: true,
@@ -105,8 +107,30 @@ class BasicForm extends PureComponent {
             ],
           })(
             <Select placeholder="请选择创建人" showSearch>
-              <Select.Option value="javascript">javascript</Select.Option>
-              <Select.Option value="hz">hz</Select.Option>
+              {
+                sysconfig.skillType && sysconfig.skillType.map((item, index) => (
+                <Select.Option value={index}>{item}</Select.Option>
+                ))
+              }
+            </Select>,
+          )}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="标签">
+          {getFieldDecorator('tag', {
+            initialValue: updateData ? updateData && updateData.tag : 1,
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
+          })(
+            <Select placeholder="请选择创建人" showSearch>
+              {
+                sysconfig.skillTag && sysconfig.skillTag.map((item, index) => (
+                <Select.Option value={index}>{item}</Select.Option>
+                ))
+              }
             </Select>,
           )}
         </Form.Item>
@@ -119,7 +143,7 @@ class BasicForm extends PureComponent {
                 message: '必填',
               },
             ],
-          })(<Input placeholder="请输入排序，数字越大越靠前" />)}
+          })(<InputNumber placeholder="请输入排序，数字越大越靠前" />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label={preView}>
           {getFieldDecorator('content', {

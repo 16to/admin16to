@@ -4,7 +4,6 @@ const GlobalModel = {
   namespace: 'global',
   state: {
     collapsed: false,
-    notices: [],
   },
   effects: {
     // 删
@@ -16,7 +15,6 @@ const GlobalModel = {
   reducers: {
     changeLayoutCollapsed(
       state = {
-        notices: [],
         collapsed: true,
       },
       { payload },
