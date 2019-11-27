@@ -52,7 +52,13 @@ router.get('/user', (req, res) => {
     const con = [];
     con.id = parseInt(utils.decrypt(req.cookies.token, config.secret), 10);
     db.Select('demo_account', con, (err, response) => {
-      res.send(response[0]);
+      if (err) {
+        res.send({
+          status: 'mysql error',
+        })
+      } else {
+        res.send(response[0]);
+      }
     });
   } else {
     res.send({
