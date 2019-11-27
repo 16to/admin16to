@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
   con['1'] = 1;
   con.username = username;
   db.Select('demo_account', con, (err, response) => {
-    if (response.length > 0 && response[0].password === password && response[0].state) {
+    if (response && response.length > 0 && response[0].password === password && response[0].state) {
       insertLoginlog(username, new Date().getTime(), utils.getClientIp(req));
       updateLogininfo(response[0].id, new Date().getTime());
       res.send({
