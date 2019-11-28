@@ -50,3 +50,23 @@ CREATE TABLE `demo_skill` (
   KEY `sort` (`sort`),
   KEY `click` (`click`)
 ) DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `demo_special`;
+CREATE TABLE `demo_special` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `subtitle` varchar(50) NOT NULL,
+  `img` varchar(128) NOT NULL DEFAULT '',
+  `color` varchar(32) NOT NULL DEFAULT '',
+  `type` int(5) NOT NULL,
+  `sort` int(11) DEFAULT '0',
+  `click` int(11) DEFAULT '0',
+  `url` varchar(255) DEFAULT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0-no,1-yes',
+  `content` text,
+  `updatetime` int(10) NOT NULL DEFAULT '0',
+  `addtime` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `click` (`click`),
+  KEY `sort` (`sort`)
+) DEFAULT CHARSET=utf8;

@@ -5,9 +5,9 @@ import router from 'umi/router';
 import BasicForm from './form';
 
 // 链接dva的状态数据
-@connect(({ skill, loading }) => ({
-  info: skill.info,
-  loading: loading.effects['skill/add'],
+@connect(({ special, loading }) => ({
+  info: special.info,
+  loading: loading.effects['special/add'],
 }))
 class Add extends PureComponent {
   state = {
@@ -26,17 +26,17 @@ class Add extends PureComponent {
         return;
       }
       dispatch({
-        type: 'skill/add',
+        type: 'special/add',
         data,
       }).then(() => {
-        router.push('/skill');
+        router.push('/special');
       })
     })
   }
 
   // 返回
   backBtn = () => {
-    router.push('/skill')
+    router.push('/special')
   }
 
   render() {

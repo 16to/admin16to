@@ -14,6 +14,7 @@ const loginRouter = require('./routes/login');
 const uploadRouter = require('./routes/upload');
 const accountRouter = require('./routes/account');
 const skillRouter = require('./routes/skill');
+const specialRouter = require('./routes/special');
 const sysconfigRouter = require('./routes/sysconfig');
 
 
@@ -30,6 +31,7 @@ app.use('/api/login', loginRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/account', accountRouter);
 app.use('/api/skill', skillRouter);
+app.use('/api/special', specialRouter);
 app.use('/api/sysconfig', sysconfigRouter);
 
 // set upload

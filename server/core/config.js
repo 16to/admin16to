@@ -41,5 +41,10 @@ module.exports = {
       'Sublime',
       'Vue',
     ],
+    specialType: [
+      '前端专题',
+      '后端专题',
+      '工具专题',
+    ],
   },
 };

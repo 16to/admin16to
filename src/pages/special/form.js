@@ -85,16 +85,27 @@ class BasicForm extends PureComponent {
             ],
           })(<Input placeholder="请输入标题" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label="作者">
-          {getFieldDecorator('author', {
-            initialValue: updateData ? updateData && updateData.author : '16to',
+        <Form.Item {...formItemLayout} label="子标题">
+          {getFieldDecorator('subtitle', {
+            initialValue: updateData ? updateData && updateData.subtitle : undefined,
             rules: [
               {
                 required: true,
                 message: '必填',
               },
             ],
-          })(<Input placeholder="请输入作者" />)}
+          })(<Input placeholder="请输入子标题" />)}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="背景色">
+          {getFieldDecorator('color', {
+            initialValue: updateData ? updateData && updateData.color : '#000000',
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
+          })(<Input placeholder="请输入背景色#000000" />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label="类型">
           {getFieldDecorator('type', {
@@ -106,28 +117,9 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择创建人" showSearch>
+            <Select placeholder="请选择类型" showSearch>
               {
-                sysconfig.skillType && sysconfig.skillType.map((item, index) => (
-                <Select.Option key={item} value={index}>{item}</Select.Option>
-                ))
-              }
-            </Select>,
-          )}
-        </Form.Item>
-        <Form.Item {...formItemLayout} label="标签">
-          {getFieldDecorator('tag', {
-            initialValue: updateData ? updateData && updateData.tag : 1,
-            rules: [
-              {
-                required: true,
-                message: '必填',
-              },
-            ],
-          })(
-            <Select placeholder="请选择创建人" showSearch>
-              {
-                sysconfig.skillTag && sysconfig.skillTag.map((item, index) => (
+                sysconfig.specialType && sysconfig.specialType.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>
                 ))
               }

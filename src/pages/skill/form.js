@@ -106,7 +106,7 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择创建人" showSearch>
+            <Select placeholder="请选择类型" showSearch>
               {
                 sysconfig.skillType && sysconfig.skillType.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>
@@ -125,7 +125,7 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择创建人" showSearch>
+            <Select placeholder="请选择标签" showSearch>
               {
                 sysconfig.skillTag && sysconfig.skillTag.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>

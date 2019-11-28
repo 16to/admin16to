@@ -5,9 +5,9 @@ import router from 'umi/router';
 import BasicForm from './form';
 
 // 链接dva的状态数据
-@connect(({ skill, loading }) => ({
-  info: skill.info,
-  loading: loading.effects['skill/update'],
+@connect(({ special, loading }) => ({
+  info: special.info,
+  loading: loading.effects['special/update'],
 }))
 class Update extends PureComponent {
   state = {
@@ -23,7 +23,7 @@ class Update extends PureComponent {
     const { dispatch, match } = this.props;
     const { id } = match.params;
     dispatch({
-      type: 'skill/selectId',
+      type: 'special/selectId',
       id,
     });
   }
@@ -39,7 +39,7 @@ class Update extends PureComponent {
         return;
       }
       dispatch({
-        type: 'skill/update',
+        type: 'special/update',
         id,
         data,
       }).then(() => {
@@ -50,7 +50,7 @@ class Update extends PureComponent {
 
   // 返回
   backBtn = () => {
-    router.push('/skill')
+    router.push('/special')
   }
 
   render() {
