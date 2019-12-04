@@ -1,12 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Input, Form, Select, Icon, Drawer, InputNumber } from 'antd';
-import { connect } from 'dva';
-import ReactMarkdown from 'react-markdown';
-import { Controlled as CodeMirror } from 'react-codemirror2';
+import { Input, Form, Select, Icon, InputNumber } from 'antd';
+import MarkDownInput from '@/components/MarkDownInput'
 
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/monokai.css');
-require('codemirror/mode/markdown/markdown');
+import { connect } from 'dva';
 
 @connect(({ sysconfig }) => ({
   sysconfig: sysconfig.sysconfig,
@@ -14,30 +10,14 @@ require('codemirror/mode/markdown/markdown');
 @Form.create()
 class BasicForm extends PureComponent {
   state = {
-    source: '',
-    viewVisible: false,
   }
 
   // DOM挂载之前
   componentWillMount() {
-    const { updateData } = this.props;
-    if (updateData) {
-      this.setState({
-        source: updateData.content ? unescape(updateData.content) : '',
-      });
-    }
   }
 
   // DOM挂载之前
   componentDidMount() {
-  }
-
-  changeCodeMirror = (editor, data, value) => {
-    const { form } = this.props;
-    this.setState({
-      source: value,
-    });
-    form.setFieldsValue({ content: value });
   }
 
   showSource = () => {
@@ -52,11 +32,17 @@ class BasicForm extends PureComponent {
     });
   };
 
+  changeCodeMirror = value => {
+    const { form } = this.props;
+    console.log(value);
+    form.setFieldsValue({ content: value });
+  }
+
   // jsx渲染
   render() {
     // 页面内容
     const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
-    const { source, viewVisible } = this.state;
+    const { viewVisible } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -149,30 +135,12 @@ class BasicForm extends PureComponent {
           {getFieldDecorator('content', {
             initialValue: updateData && updateData.content ? unescape(updateData.content) : '',
           })(<Input hidden />)}
-          <CodeMirror
-            onPaste={this.onPaste}
-            value={source}
-            options={{
-              mode: 'markdown',
-              lineNumbers: true,
-              theme: 'monokai',
-            }}
-            onBeforeChange={this.changeCodeMirror}
+          <MarkDownInput
+            onBeforeChange = {this.changeCodeMirror}
+            initialValue = {updateData && updateData.content ? unescape(updateData.content) : ''}
           />
         </Form.Item>
       </Form>
-      <Drawer
-          title="内容预览"
-          placement="right"
-          width="800px"
-          onClose={this.onClose}
-          visible={viewVisible}
-          destroyOnClose
-        >
-          <ReactMarkdown
-            source={source}
-          />
-      </Drawer>
       </div>
     );
   }
