@@ -1,13 +1,34 @@
 import React from 'react';
-import { Drawer } from 'antd';
+import { Drawer, Icon } from 'antd';
 
 import ReactMarkdown from 'react-markdown';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { uploadImgFromPaste } from '@/utils/utils';
 
 require('codemirror/lib/codemirror.css');
 require('codemirror/theme/monokai.css');
 require('codemirror/mode/markdown/markdown');
+
+const uploadImgFromPaste = (file, path, callback) => {
+  const formData = new FormData();
+  formData.append('pasteimg', file);
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', path);
+  xhr.onload = () => {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        if (callback) { callback(JSON.parse(xhr.response)); }
+      } else {
+        // eslint-disable-next-line no-console
+        console.log(xhr.statusText);
+      }
+    }
+  };
+  xhr.onerror = () => {
+    // eslint-disable-next-line no-console
+    console.log(xhr.statusText);
+  }
+  xhr.send(formData);
+}
 
 class MarkDownInput extends React.Component {
   state = {
@@ -56,12 +77,12 @@ class MarkDownInput extends React.Component {
   }
 
   changeCodeMirror = (editor, data, value) => {
-    const { onBeforeChange } = this.props;
+    const { onChange } = this.props;
     this.setState({
       source: value,
     });
-    if (onBeforeChange) {
-      onBeforeChange(value);
+    if (onChange) {
+      onChange(value);
     }
   }
 
@@ -79,6 +100,9 @@ class MarkDownInput extends React.Component {
           }}
           onBeforeChange={this.changeCodeMirror}
         />
+        <div style={{ lineHeight: '22px' }}>
+          <a onClick={this.showSource}><Icon type="eye" title="预览" style={{ fontSize: 16 }} /> 预览</a>
+        </div>
         <Drawer
           title="内容预览"
           placement="right"

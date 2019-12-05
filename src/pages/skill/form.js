@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Input, Form, Select, Icon, InputNumber } from 'antd';
+import { Input, Form, Select, InputNumber } from 'antd';
 import MarkDownInput from '@/components/MarkDownInput'
 
 import { connect } from 'dva';
@@ -20,21 +20,8 @@ class BasicForm extends PureComponent {
   componentDidMount() {
   }
 
-  showSource = () => {
-    this.setState({
-      viewVisible: true,
-    });
-  }
-
-  onClose = () => {
-    this.setState({
-      viewVisible: false,
-    });
-  };
-
   changeCodeMirror = value => {
     const { form } = this.props;
-    console.log(value);
     form.setFieldsValue({ content: value });
   }
 
@@ -42,7 +29,6 @@ class BasicForm extends PureComponent {
   render() {
     // 页面内容
     const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
-    const { viewVisible } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -54,9 +40,6 @@ class BasicForm extends PureComponent {
         md: { span: 16 },
       },
     };
-    const preView = (
-      <span>内容 <Icon type="eye" title="预览" onClick={this.showSource} style={{ cursor: 'pointer', fontSize: 16 }} /></span>
-    )
     return (
       <div>
       <Form onSubmit={this.handleSubmit} style={{ marginTop: 8 }}>
@@ -131,12 +114,12 @@ class BasicForm extends PureComponent {
             ],
           })(<InputNumber placeholder="请输入排序，数字越大越靠前" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label={preView}>
+        <Form.Item {...formItemLayout} label="内容">
           {getFieldDecorator('content', {
             initialValue: updateData && updateData.content ? unescape(updateData.content) : '',
           })(<Input hidden />)}
           <MarkDownInput
-            onBeforeChange = {this.changeCodeMirror}
+            onChange = {this.changeCodeMirror}
             initialValue = {updateData && updateData.content ? unescape(updateData.content) : ''}
           />
         </Form.Item>

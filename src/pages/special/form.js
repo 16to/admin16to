@@ -1,12 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Input, Form, Select, Icon, Drawer, InputNumber } from 'antd';
+import { Input, Form, Select, Icon, InputNumber } from 'antd';
 import { connect } from 'dva';
-import ReactMarkdown from 'react-markdown';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/monokai.css');
-require('codemirror/mode/markdown/markdown');
+import MarkDownInput from '@/components/MarkDownInput';
+import UploadImg from '@/components/UploadImg';
 
 @connect(({ sysconfig }) => ({
   sysconfig: sysconfig.sysconfig,
@@ -14,49 +10,32 @@ require('codemirror/mode/markdown/markdown');
 @Form.create()
 class BasicForm extends PureComponent {
   state = {
-    source: '',
-    viewVisible: false,
   }
 
   // DOM挂载之前
   componentWillMount() {
-    const { updateData } = this.props;
-    if (updateData) {
-      this.setState({
-        source: updateData.content ? unescape(updateData.content) : '',
-      });
-    }
   }
 
   // DOM挂载之前
   componentDidMount() {
   }
 
-  changeCodeMirror = (editor, data, value) => {
+  changeCodeMirror = value => {
     const { form } = this.props;
-    this.setState({
-      source: value,
-    });
     form.setFieldsValue({ content: value });
   }
 
-  showSource = () => {
-    this.setState({
-      viewVisible: true,
+  changeUpload = fileList => {
+    const { form } = this.props;
+    form.setFieldsValue({
+      img: (fileList[0] && fileList[0].response && fileList[0].response.imagename) || '',
     });
   }
-
-  onClose = () => {
-    this.setState({
-      viewVisible: false,
-    });
-  };
 
   // jsx渲染
   render() {
     // 页面内容
     const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
-    const { source, viewVisible } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -107,6 +86,15 @@ class BasicForm extends PureComponent {
             ],
           })(<Input placeholder="请输入背景色#000000" />)}
         </Form.Item>
+        <Form.Item {...formItemLayout} label="单个图片">
+          {getFieldDecorator('img', {
+            initialValue: updateData ? updateData && updateData.img : '',
+          })(<Input hidden />)}
+          <UploadImg
+            initialValue={updateData ? updateData && updateData.img : ''}
+            onChange={this.changeUpload}
+          />
+        </Form.Item>
         <Form.Item {...formItemLayout} label="类型">
           {getFieldDecorator('type', {
             initialValue: updateData ? updateData && updateData.type : 0,
@@ -141,30 +129,12 @@ class BasicForm extends PureComponent {
           {getFieldDecorator('content', {
             initialValue: updateData && updateData.content ? unescape(updateData.content) : '',
           })(<Input hidden />)}
-          <CodeMirror
-            onPaste={this.onPaste}
-            value={source}
-            options={{
-              mode: 'markdown',
-              lineNumbers: true,
-              theme: 'monokai',
-            }}
-            onBeforeChange={this.changeCodeMirror}
+          <MarkDownInput
+            onChange = {this.changeCodeMirror}
+            initialValue = {updateData && updateData.content ? unescape(updateData.content) : ''}
           />
         </Form.Item>
       </Form>
-      <Drawer
-          title="内容预览"
-          placement="right"
-          width="800px"
-          onClose={this.onClose}
-          visible={viewVisible}
-          destroyOnClose
-        >
-          <ReactMarkdown
-            source={source}
-          />
-      </Drawer>
       </div>
     );
   }

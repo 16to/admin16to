@@ -34,7 +34,6 @@ class Update extends PureComponent {
     const { id } = match.params;
     const { form } = this.updateForm.props;
     form.validateFields((err, data) => {
-      console.log(data);
       if (err) {
         return;
       }

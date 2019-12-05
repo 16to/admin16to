@@ -66,11 +66,9 @@ class BasicForm extends PureComponent {
   }
 
   removeImg = info => {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'global/deleteImg',
-      id: info.response.imagename,
-    })
+    fetch(`/api/upload/${info.response.imagename}`, {
+        method: 'DELETE',
+    });
   }
 
   changeCodeMirror = (editor, data, value) => {
