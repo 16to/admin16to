@@ -14,5 +14,6 @@ export default {
   iconfontUrl: '',
   collapse: true,
   language: 'zh-CN',
-  copyright:"16to.com 一路向前"
+  copyright:"16to.com 一路向前",
+  imgSrc:'/upload',
 };

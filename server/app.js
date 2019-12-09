@@ -19,7 +19,7 @@ const sysconfigRouter = require('./routes/sysconfig');
 
 
 // node server port
-const PORT = 8002;
+const PORT = 3000;
 const app = express();
 app.use(bodyparser.json());
 app.use(cookieParser());

@@ -179,9 +179,10 @@ class List extends PureComponent {
   picInfo = src => {
     Modal.info({
       content: (
-        <img src={src} alt="img" />
+        <img src={`/upload/${src}`} style={{ width: '100%' }} alt="img" />
       ),
       icon: false,
+      okText: '知道了',
       maskClosable: true,
     })
   }
