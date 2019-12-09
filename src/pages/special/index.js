@@ -31,6 +31,11 @@ class List extends PureComponent {
       title: '图片',
       dataIndex: 'img',
       key: 'img',
+      render: val => (
+        <a onClick={() => this.picInfo(val)}>
+          {val}
+        </a>
+      ),
     },
     {
       title: '背景色',
@@ -69,7 +74,7 @@ class List extends PureComponent {
     {
       title: '操作',
       key: 'action',
-      width: '180px',
+      width: '120px',
       render: (_text, record) => (
         <span>
           <Button
@@ -169,6 +174,18 @@ class List extends PureComponent {
   updateBtn = id => {
     router.push(`/special/update/${id}`);
   };
+
+  // 展示图片
+  picInfo = src => {
+    Modal.info({
+      content: (
+        <img src={src} alt="img" />
+      ),
+      icon: false,
+      maskClosable: true,
+    })
+  }
+
 
   render() {
     const { list, loading } = this.props;

@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     con.like = `title like '%${req.query.search}%'`;
   }
   con.orderBy = 'addtime desc';
-  db.Select('demo_skill', con, (err, response) => {
+  db.Select('xx_skill', con, (err, response) => {
     res.send(response);
   });
 });
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Select('demo_skill', con, (err, response) => {
+  db.Select('xx_skill', con, (err, response) => {
     res.send(response[0]);
   });
 });
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
   insertData.type = req.body.type;
   insertData.tag = req.body.tag;
   insertData.sort = req.body.sort;
-  db.Insert('demo_skill', insertData, (err, response) => {
+  db.Insert('xx_skill', insertData, (err, response) => {
     res.send(response);
   });
 });
@@ -50,7 +50,7 @@ router.put('/:id', (req, res) => {
   updateData.type = req.body.type;
   updateData.tag = req.body.tag;
   updateData.sort = req.body.sort;
-  db.Update('demo_skill', updateData, con, (err, response) => {
+  db.Update('xx_skill', updateData, con, (err, response) => {
     res.send(response);
   });
 });
@@ -58,7 +58,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Delete('demo_skill', con, (err, response) => {
+  db.Delete('xx_skill', con, (err, response) => {
     res.send(response);
   });
 });

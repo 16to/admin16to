@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `demo_table`;
-CREATE TABLE `demo_table` (
+DROP TABLE IF EXISTS `xx_table`;
+CREATE TABLE `xx_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` char(200) NOT NULL DEFAULT '',
   `content` text,
@@ -10,8 +10,8 @@ CREATE TABLE `demo_table` (
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `demo_account`;
-CREATE TABLE `demo_account` (
+DROP TABLE IF EXISTS `xx_account`;
+CREATE TABLE `xx_account` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` char(200) NOT NULL DEFAULT '',
   `password` char(200) NOT NULL DEFAULT '',
@@ -21,10 +21,10 @@ CREATE TABLE `demo_account` (
   `state` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
-INSERT INTO `demo_account` VALUES ('1', 'admin', 'admin', '0', '0', '0', '1');
+INSERT INTO `xx_account` VALUES ('1', 'admin', 'admin', '0', '0', '0', '1');
 
-DROP TABLE IF EXISTS `demo_loginlog`;
-CREATE TABLE `demo_loginlog` (
+DROP TABLE IF EXISTS `xx_loginlog`;
+CREATE TABLE `xx_loginlog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` char(200) NOT NULL DEFAULT '',
   `logintime` bigint(20) DEFAULT '0',
@@ -32,8 +32,8 @@ CREATE TABLE `demo_loginlog` (
   PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `demo_skill`;
-CREATE TABLE `demo_skill` (
+DROP TABLE IF EXISTS `xx_skill`;
+CREATE TABLE `xx_skill` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `author` varchar(20) NOT NULL,
@@ -51,8 +51,8 @@ CREATE TABLE `demo_skill` (
   KEY `click` (`click`)
 ) DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `demo_special`;
-CREATE TABLE `demo_special` (
+DROP TABLE IF EXISTS `xx_special`;
+CREATE TABLE `xx_special` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   `subtitle` varchar(50) NOT NULL,

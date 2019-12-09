@@ -8,10 +8,10 @@ router.get('/', (req, res) => {
   const con = [];
   con['1'] = 1;
   if (req.query.search) {
-    con.like = `title like '%${req.query.search}%'`;
+    con.like = `title like '%${req.query.search}%' or subtitle like '%${req.query.search}%'`;
   }
   con.orderBy = 'addtime desc';
-  db.Select('demo_special', con, (err, response) => {
+  db.Select('xx_special', con, (err, response) => {
     res.send(response);
   });
 });
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Select('demo_special', con, (err, response) => {
+  db.Select('xx_special', con, (err, response) => {
     res.send(response[0]);
   });
 });
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
   insertData.content = escape(req.body.content);
   insertData.type = req.body.type;
   insertData.sort = req.body.sort;
-  db.Insert('demo_special', insertData, (err, response) => {
+  db.Insert('xx_special', insertData, (err, response) => {
     res.send(response);
   });
 });
@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
   updateData.content = escape(req.body.content);
   updateData.type = req.body.type;
   updateData.sort = req.body.sort;
-  db.Update('demo_special', updateData, con, (err, response) => {
+  db.Update('xx_special', updateData, con, (err, response) => {
     res.send(response);
   });
 });
@@ -60,7 +60,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Delete('demo_special', con, (err, response) => {
+  db.Delete('xx_special', con, (err, response) => {
     res.send(response);
   });
 });

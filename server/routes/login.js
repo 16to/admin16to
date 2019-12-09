@@ -12,7 +12,7 @@ function insertLoginlog(username, logintime, loginip) {
   insertCon.username = username;
   insertCon.logintime = logintime;
   insertCon.loginip = loginip;
-  db.Insert('demo_loginlog', insertCon);
+  db.Insert('xx_loginlog', insertCon);
 }
 
 function updateLogininfo(id, lastTime) {
@@ -21,7 +21,7 @@ function updateLogininfo(id, lastTime) {
   const updateCon = [];
   updateCon.lastTime = lastTime;
   updateCon.addStep = 'logincount=logincount+1';
-  db.Update('demo_account', updateCon, con);
+  db.Update('xx_account', updateCon, con);
 }
 
 router.post('/', (req, res) => {
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
   const con = [];
   con['1'] = 1;
   con.username = username;
-  db.Select('demo_account', con, (err, response) => {
+  db.Select('xx_account', con, (err, response) => {
     if (response && response.length > 0 && response[0].password === password && response[0].state) {
       insertLoginlog(username, new Date().getTime(), utils.getClientIp(req));
       updateLogininfo(response[0].id, new Date().getTime());
@@ -51,7 +51,7 @@ router.get('/user', (req, res) => {
   if (req.cookies.token) {
     const con = [];
     con.id = parseInt(utils.decrypt(req.cookies.token, config.secret), 10);
-    db.Select('demo_account', con, (err, response) => {
+    db.Select('xx_account', con, (err, response) => {
       if (err) {
         res.send({
           status: 'mysql error',

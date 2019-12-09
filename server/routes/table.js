@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     con.like = `title like '%${req.query.search}%'`;
   }
   con.orderBy = 'addtime desc';
-  db.Select('demo_table', con, (err, response) => {
+  db.Select('xx_table', con, (err, response) => {
     res.send(response);
   });
 });
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Select('demo_table', con, (err, response) => {
+  db.Select('xx_table', con, (err, response) => {
     res.send(response[0]);
   });
 });
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
   insertData.content = escape(req.body.content);
   insertData.creator = req.body.creator;
   insertData.imagename = req.body.imagename;
-  db.Insert('demo_table', insertData, (err, response) => {
+  db.Insert('xx_table', insertData, (err, response) => {
     res.send(response);
   });
 });
@@ -46,7 +46,7 @@ router.put('/:id', (req, res) => {
   updateData.content = escape(req.body.content);
   updateData.creator = req.body.creator;
   updateData.imagename = req.body.imagename;
-  db.Update('demo_table', updateData, con, (err, response) => {
+  db.Update('xx_table', updateData, con, (err, response) => {
     res.send(response);
   });
 });
@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Delete('demo_table', con, (err, response) => {
+  db.Delete('xx_table', con, (err, response) => {
     res.send(response);
   });
 });

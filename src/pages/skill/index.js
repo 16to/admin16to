@@ -69,7 +69,7 @@ class List extends PureComponent {
     {
       title: '操作',
       key: 'action',
-      width: '180px',
+      width: '120px',
       render: (_text, record) => (
         <span>
           <Button

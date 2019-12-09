@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   if (req.query.search) {
     con.like = `username like '%${req.query.search}%'`;
   }
-  db.Select('demo_account', con, (err, response) => {
+  db.Select('xx_account', con, (err, response) => {
     res.send(response);
   });
 });
@@ -23,7 +23,7 @@ router.get('/log', (req, res) => {
     con.like = `username like '%${req.query.search}%'`;
   }
   con.orderBy = 'id desc';
-  db.Select('demo_loginlog', con, (err, response) => {
+  db.Select('xx_loginlog', con, (err, response) => {
     res.send(response);
   });
 });
@@ -31,7 +31,7 @@ router.get('/log', (req, res) => {
 router.delete('/log', (req, res) => {
   const con = [];
   con['1'] = 1;
-  db.Delete('demo_loginlog', con, (err, response) => {
+  db.Delete('xx_loginlog', con, (err, response) => {
     res.send(response);
   });
 });
@@ -39,7 +39,7 @@ router.delete('/log', (req, res) => {
 router.get('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Select('demo_account', con, (err, response) => {
+  db.Select('xx_account', con, (err, response) => {
     res.send(response[0]);
   });
 });
@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
   insertData.password = req.body.password;
   insertData.state = req.body.state;
   insertData.addtime = new Date().getTime();
-  db.Insert('demo_account', insertData, (err, response) => {
+  db.Insert('xx_account', insertData, (err, response) => {
     res.send(response);
   });
 });
@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
   updateData.username = req.body.username;
   updateData.password = req.body.password;
   updateData.state = req.body.state;
-  db.Update('demo_account', updateData, con, (err, response) => {
+  db.Update('xx_account', updateData, con, (err, response) => {
     res.send(response);
   });
 });
@@ -70,7 +70,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const con = [];
   con.id = parseInt(req.params.id, 10);
-  db.Delete('demo_account', con, (err, response) => {
+  db.Delete('xx_account', con, (err, response) => {
     res.send(response);
   });
 });
