@@ -8,7 +8,7 @@
     "build": "umi build",
     "start": "umi dev",
     "proxy": "cross-env APP_TYPE=proxy MOCK=none UMI_UI=none umi dev",
-    "proxy:localhost": "npm run proxy http://localhost:8002",
+    "proxy:localhost": "npm run proxy http://localhost:3000",
     "server": "node ./server/app.js",
     "server:reload": "supervisor -i node_modules ./server/app.js",
     "debug": "npm-run-all --parallel proxy:localhost server:reload",

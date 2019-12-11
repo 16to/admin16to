@@ -70,3 +70,21 @@ CREATE TABLE `xx_special` (
   KEY `click` (`click`),
   KEY `sort` (`sort`)
 ) DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `xx_works`;
+CREATE TABLE `xx_works` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) NOT NULL DEFAULT '',
+  `url` varchar(255) DEFAULT NULL,
+  `img` varchar(128) NOT NULL DEFAULT '',
+  `type` int(5) NOT NULL,
+  `tag` varchar(50) NOT NULL DEFAULT '',
+  `click` int(11) DEFAULT '0',
+  `sort` int(11) DEFAULT '0',
+  `good` int(11) DEFAULT '0',
+  `content` text,
+  `addtime` int(10) NOT NULL,
+  `updatetime` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) DEFAULT CHARSET=utf8;
+

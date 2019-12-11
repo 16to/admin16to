@@ -15,6 +15,8 @@ const { Search } = Input;
 class List extends PureComponent {
   state = {};
 
+  title='热点专题';
+
   // 定义表格头
   columns = [
     {
@@ -209,7 +211,7 @@ class List extends PureComponent {
             className="pull-right"
             onClick={this.addBtn}
           >
-            新建热点专题
+            新建{this.title}
           </Button>
           <Search
             placeholder="请输入关键词"

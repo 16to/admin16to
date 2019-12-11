@@ -7,15 +7,15 @@ import router from 'umi/router';
 const { Search } = Input;
 
 // 链接dva的状态数据
-@connect(({ skill, sysconfig, loading }) => ({
-  list: skill.list,
+@connect(({ work, sysconfig, loading }) => ({
+  list: work.list,
   sysconfig: sysconfig.sysconfig,
-  loading: loading.effects['skill/select'],
+  loading: loading.effects['work/select'],
 }))
 class List extends PureComponent {
   state = {};
 
-  title='技术积累'
+  title = '原创项目';
 
   // 定义表格头
   columns = [
@@ -25,9 +25,24 @@ class List extends PureComponent {
       key: 'title',
     },
     {
-      title: '作者',
-      dataIndex: 'author',
-      key: 'author',
+      title: '子标题',
+      dataIndex: 'subtitle',
+      key: 'subtitle',
+    },
+    {
+      title: '图片',
+      dataIndex: 'img',
+      key: 'img',
+      render: val => (
+        <a onClick={() => this.picInfo(val)}>
+          {val}
+        </a>
+      ),
+    },
+    {
+      title: '背景色',
+      dataIndex: 'color',
+      key: 'color',
     },
     {
       title: '类型',
@@ -35,17 +50,7 @@ class List extends PureComponent {
       key: 'type',
       render: val => (
         <span>
-          {this.props.sysconfig.skillType && this.props.sysconfig.skillType[val]}
-        </span>
-      ),
-    },
-    {
-      title: '标签',
-      dataIndex: 'tag',
-      key: 'tag',
-      render: val => (
-        <span>
-          {this.props.sysconfig.skillTag && this.props.sysconfig.skillTag[val]}
+          {this.props.sysconfig.workType && this.props.sysconfig.workType[val]}
         </span>
       ),
     },
@@ -108,7 +113,7 @@ class List extends PureComponent {
   getTableData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'skill/select',
+      type: 'work/select',
       params: this.params,
     });
   };
@@ -148,7 +153,7 @@ class List extends PureComponent {
   sendDeleteId = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'skill/delete',
+      type: 'work/delete',
       id,
     });
   };
@@ -164,13 +169,26 @@ class List extends PureComponent {
 
   // 添加按钮
   addBtn = () => {
-    router.push('/skill/add');
+    router.push('/work/add');
   };
 
   // 修改按钮
   updateBtn = id => {
-    router.push(`/skill/update/${id}`);
+    router.push(`/work/update/${id}`);
   };
+
+  // 展示图片
+  picInfo = src => {
+    Modal.info({
+      content: (
+        <img src={`/upload/${src}`} style={{ width: '100%' }} alt="img" />
+      ),
+      icon: false,
+      okText: '知道了',
+      maskClosable: true,
+    })
+  }
+
 
   render() {
     const { list, loading } = this.props;

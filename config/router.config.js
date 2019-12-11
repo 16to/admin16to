@@ -116,6 +116,35 @@ export default [
               }
             ]
           },
+          // 原创项目功能
+          {
+            path: "/work",
+            name: "work",
+            icon: "appstore",
+            component: "../layouts/ContentLayout",
+            routes: [
+              {
+                path: "/work",
+                hideInMenu: true,
+                component: "./work/index"
+              },
+              {
+                path: "/work/add",
+                name: "add",
+                hideInMenu: true,
+                component: "./work/add"
+              },
+              {
+                path: "/work/update/:id",
+                name: "update",
+                hideInMenu: true,
+                component: "./work/update"
+              },
+              {
+                component: "./404"
+              }
+            ]
+          },
           // 管理员信息
           {
             path: "/account",
