@@ -118,27 +118,27 @@ export default [
           },
           // 原创项目功能
           {
-            path: "/work",
-            name: "work",
+            path: "/works",
+            name: "works",
             icon: "appstore",
             component: "../layouts/ContentLayout",
             routes: [
               {
-                path: "/work",
+                path: "/works",
                 hideInMenu: true,
-                component: "./work/index"
+                component: "./works/index"
               },
               {
-                path: "/work/add",
+                path: "/works/add",
                 name: "add",
                 hideInMenu: true,
-                component: "./work/add"
+                component: "./works/add"
               },
               {
-                path: "/work/update/:id",
+                path: "/works/update/:id",
                 name: "update",
                 hideInMenu: true,
-                component: "./work/update"
+                component: "./works/update"
               },
               {
                 component: "./404"

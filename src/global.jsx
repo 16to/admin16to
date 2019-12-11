@@ -19,11 +19,11 @@ if (pwa) {
     const e = event;
 
     const reloadSW = async () => {
-      // Check if there is sw whose state is waiting in ServiceWorkerRegistration
-      // https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration
-      const worker = e.detail && e.detail.waiting;
+      // Check if there is sw whose state is waiting in ServiceworkserRegistration
+      // https://developer.mozilla.org/en-US/docs/Web/API/ServiceworkserRegistration
+      const workser = e.detail && e.detail.waiting;
 
-      if (!worker) {
+      if (!workser) {
         return true;
       } // Send skip-waiting event to waiting SW with MessageChannel
 
@@ -38,7 +38,7 @@ if (pwa) {
           }
         };
 
-        worker.postMessage(
+        workser.postMessage(
           {
             type: 'skip-waiting',
           },
@@ -60,35 +60,35 @@ if (pwa) {
         }}
       >
         {formatMessage({
-          id: 'app.pwa.serviceworker.updated.ok',
+          id: 'app.pwa.serviceworkser.updated.ok',
         })}
       </Button>
     );
     notification.open({
       message: formatMessage({
-        id: 'app.pwa.serviceworker.updated',
+        id: 'app.pwa.serviceworkser.updated',
       }),
       description: formatMessage({
-        id: 'app.pwa.serviceworker.updated.hint',
+        id: 'app.pwa.serviceworkser.updated.hint',
       }),
       btn,
       key,
       onClose: async () => {},
     });
   });
-} else if ('serviceWorker' in navigator) {
-  // unregister service worker
-  const { serviceWorker } = navigator;
+} else if ('serviceworkser' in navigator) {
+  // unregister service workser
+  const { serviceworkser } = navigator;
 
-  if (serviceWorker.getRegistrations) {
-    serviceWorker.getRegistrations().then(sws => {
+  if (serviceworkser.getRegistrations) {
+    serviceworkser.getRegistrations().then(sws => {
       sws.forEach(sw => {
         sw.unregister();
       });
     });
   }
 
-  serviceWorker.getRegistration().then(sw => {
+  serviceworkser.getRegistration().then(sw => {
     if (sw) sw.unregister();
   }); // remove all caches
 

@@ -1,9 +1,9 @@
 // 引入所有的请求接口
-import { getList, getInfo, del, update, add } from '@/services/work';
+import { getList, getInfo, del, update, add } from '@/services/works';
 
 export default {
   // 空间名称
-  namespace: 'work',
+  namespace: 'works',
 
   // 状态值
   state: {

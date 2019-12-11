@@ -64,31 +64,26 @@ class BasicForm extends PureComponent {
             ],
           })(<Input placeholder="请输入标题" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label="子标题">
-          {getFieldDecorator('subtitle', {
-            initialValue: updateData ? updateData && updateData.subtitle : undefined,
+        <Form.Item {...formItemLayout} label="网址">
+          {getFieldDecorator('url', {
+            initialValue: updateData ? updateData && updateData.url : undefined,
             rules: [
               {
                 required: true,
                 message: '必填',
               },
             ],
-          })(<Input placeholder="请输入子标题" />)}
-        </Form.Item>
-        <Form.Item {...formItemLayout} label="背景色">
-          {getFieldDecorator('color', {
-            initialValue: updateData ? updateData && updateData.color : '#000000',
-            rules: [
-              {
-                required: true,
-                message: '必填',
-              },
-            ],
-          })(<Input placeholder="请输入背景色#000000" />)}
+          })(<Input placeholder="请输入网址" />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label="单个图片">
           {getFieldDecorator('img', {
             initialValue: updateData ? updateData && updateData.img : '',
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
           })(<Input hidden />)}
           <UploadImg
             initialValue={updateData ? updateData && updateData.img : ''}
@@ -107,12 +102,23 @@ class BasicForm extends PureComponent {
           })(
             <Select placeholder="请选择类型" showSearch>
               {
-                sysconfig.specialType && sysconfig.specialType.map((item, index) => (
+                sysconfig.worksType && sysconfig.worksType.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>
                 ))
               }
             </Select>,
           )}
+        </Form.Item>
+        <Form.Item {...formItemLayout} label="标签">
+          {getFieldDecorator('tag', {
+            initialValue: updateData ? updateData && updateData.tag : undefined,
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
+          })(<Input placeholder="请输入标签" />)}
         </Form.Item>
         <Form.Item {...formItemLayout} label="排序">
           {getFieldDecorator('sort', {

@@ -7,10 +7,10 @@ import router from 'umi/router';
 const { Search } = Input;
 
 // 链接dva的状态数据
-@connect(({ work, sysconfig, loading }) => ({
-  list: work.list,
+@connect(({ works, sysconfig, loading }) => ({
+  list: works.list,
   sysconfig: sysconfig.sysconfig,
-  loading: loading.effects['work/select'],
+  loading: loading.effects['works/select'],
 }))
 class List extends PureComponent {
   state = {};
@@ -25,9 +25,9 @@ class List extends PureComponent {
       key: 'title',
     },
     {
-      title: '子标题',
-      dataIndex: 'subtitle',
-      key: 'subtitle',
+      title: '网址',
+      dataIndex: 'url',
+      key: 'url',
     },
     {
       title: '图片',
@@ -40,19 +40,19 @@ class List extends PureComponent {
       ),
     },
     {
-      title: '背景色',
-      dataIndex: 'color',
-      key: 'color',
-    },
-    {
       title: '类型',
       dataIndex: 'type',
       key: 'type',
       render: val => (
         <span>
-          {this.props.sysconfig.workType && this.props.sysconfig.workType[val]}
+          {this.props.sysconfig.worksType && this.props.sysconfig.worksType[val]}
         </span>
       ),
+    },
+    {
+      title: '标签',
+      dataIndex: 'tag',
+      key: 'tag',
     },
     {
       title: '排序',
@@ -113,7 +113,7 @@ class List extends PureComponent {
   getTableData = () => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'work/select',
+      type: 'works/select',
       params: this.params,
     });
   };
@@ -153,7 +153,7 @@ class List extends PureComponent {
   sendDeleteId = id => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'work/delete',
+      type: 'works/delete',
       id,
     });
   };
@@ -169,12 +169,12 @@ class List extends PureComponent {
 
   // 添加按钮
   addBtn = () => {
-    router.push('/work/add');
+    router.push('/works/add');
   };
 
   // 修改按钮
   updateBtn = id => {
-    router.push(`/work/update/${id}`);
+    router.push(`/works/update/${id}`);
   };
 
   // 展示图片

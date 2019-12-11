@@ -89,6 +89,12 @@ class BasicForm extends PureComponent {
         <Form.Item {...formItemLayout} label="单个图片">
           {getFieldDecorator('img', {
             initialValue: updateData ? updateData && updateData.img : '',
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
           })(<Input hidden />)}
           <UploadImg
             initialValue={updateData ? updateData && updateData.img : ''}

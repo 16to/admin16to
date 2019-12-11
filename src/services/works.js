@@ -3,17 +3,17 @@ import request from '@/utils/request';
 
 // 获取数据
 export async function getList(params) {
-  return request(`/api/work?${stringify(params)}`);
+  return request(`/api/works?${stringify(params)}`);
 }
 
 // 获取id数据
 export async function getInfo(id) {
-  return request(`/api/work/${id}`);
+  return request(`/api/works/${id}`);
 }
 
 // 新增数据
 export async function add(data) {
-  return request('/api/work', {
+  return request('/api/works', {
     method: 'POST',
     data,
   });
@@ -21,7 +21,7 @@ export async function add(data) {
 
 // 更新数据
 export async function update(id, data) {
-  return request(`/api/work/${id}`, {
+  return request(`/api/works/${id}`, {
     method: 'PUT',
     data,
   });
@@ -29,7 +29,7 @@ export async function update(id, data) {
 
 // 删除获取id数据
 export async function del(id) {
-  return request(`/api/work/${id}`, {
+  return request(`/api/works/${id}`, {
     method: 'DELETE',
   });
 }

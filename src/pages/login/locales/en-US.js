@@ -53,7 +53,7 @@ export default {
   'user-login.placeholder.start': 'Start date',
   'user-login.placeholder.end': 'End date',
   'user-login.goal.label': 'Goal description',
-  'user-login.goal.placeholder': 'Please enter your work goals',
+  'user-login.goal.placeholder': 'Please enter your works goals',
   'user-login.standard.label': 'Metrics',
   'user-login.standard.placeholder': 'Please enter a metric',
   'user-login.client.label': 'Client',
