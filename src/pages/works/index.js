@@ -7,10 +7,11 @@ import router from 'umi/router';
 const { Search } = Input;
 
 // 链接dva的状态数据
-@connect(({ works, sysconfig, loading }) => ({
+@connect(({ works, sysconfig, settings, loading }) => ({
   list: works.list,
   sysconfig: sysconfig.sysconfig,
   loading: loading.effects['works/select'],
+  imgBase: settings.imgBase,
 }))
 class List extends PureComponent {
   state = {};
@@ -179,9 +180,10 @@ class List extends PureComponent {
 
   // 展示图片
   picInfo = src => {
+    const { imgBase } = this.props;
     Modal.info({
       content: (
-        <img src={`/upload/${src}`} style={{ width: '100%' }} alt="img" />
+        <img src={imgBase + src} style={{ width: '100%' }} alt="img" />
       ),
       icon: false,
       okText: '知道了',

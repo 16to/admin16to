@@ -4,8 +4,9 @@ import { connect } from 'dva';
 import MarkDownInput from '@/components/MarkDownInput';
 import UploadImg from '@/components/UploadImg';
 
-@connect(({ sysconfig }) => ({
+@connect(({ sysconfig, settings }) => ({
   sysconfig: sysconfig.sysconfig,
+  imgBase: settings.imgBase,
 }))
 @Form.create()
 class BasicForm extends PureComponent {
@@ -26,16 +27,16 @@ class BasicForm extends PureComponent {
   }
 
   changeUpload = fileList => {
-    const { form } = this.props;
+    const { form, imgBase } = this.props;
     form.setFieldsValue({
-      img: (fileList[0] && fileList[0].response && fileList[0].response.imagename) || '',
+      img: (fileList[0] && fileList[0].response && imgBase + fileList[0].response.imagename) || '',
     });
   }
 
   // jsx渲染
   render() {
     // 页面内容
-    const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
+    const { updateData, form: { getFieldDecorator }, sysconfig, imgBase } = this.props;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -77,7 +78,7 @@ class BasicForm extends PureComponent {
         </Form.Item>
         <Form.Item {...formItemLayout} label="单个图片">
           {getFieldDecorator('img', {
-            initialValue: updateData ? updateData && updateData.img : '',
+            initialValue: updateData ? updateData && imgBase + updateData.img : '',
             rules: [
               {
                 required: true,
@@ -86,7 +87,7 @@ class BasicForm extends PureComponent {
             ],
           })(<Input hidden />)}
           <UploadImg
-            initialValue={updateData ? updateData && updateData.img : ''}
+            initialValue={updateData ? updateData && imgBase + updateData.img : ''}
             onChange={this.changeUpload}
           />
         </Form.Item>

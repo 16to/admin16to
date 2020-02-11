@@ -4,7 +4,7 @@ import { Card, Alert } from 'antd';
 export default () => (
   <Card>
     <Alert
-      message="umi ui 现已发布，欢迎使用 npm run ui 启动体验。"
+      message="这里是admin.16to.com首页"
       type="success"
       showIcon
       banner

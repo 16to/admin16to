@@ -28,7 +28,7 @@ class UploadImg extends React.Component {
         name: initialValue,
         status: 'done',
         response: { imagename: initialValue },
-        url: `/upload/${initialValue}`,
+        url: `${initialValue}`,
       }] : [],
     })
   }
@@ -40,7 +40,7 @@ class UploadImg extends React.Component {
     fileList = fileList.map(file => {
       const tmp = file;
       if (tmp.response) {
-        tmp.url = `/upload/${file.response.imagename}`;
+        tmp.url = `${file.response.imagename}`;
       }
       return tmp;
     });
