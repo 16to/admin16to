@@ -7,6 +7,8 @@ const path = require('path');
 const bodyparser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
+const config = require('../config/defaultSettings');
 
 // const route = require('./route');
 // router
@@ -24,6 +26,7 @@ const PORT = 3002;
 const app = express();
 app.use(bodyparser.json());
 app.use(cookieParser());
+app.use(compression());
 const httpServer = http.createServer(app);
 
 // set api
@@ -31,10 +34,10 @@ app.use('/api/table', tableRouter);
 app.use('/api/login', loginRouter);
 // 上传需要代理到g.16to.com/upload上
 app.use('/api/upload', proxy({
-  target: 'http://localhost:3003',
+  target: config.imgBase,
   changeOrigin: true,
   pathRewrite: {
-    '^/api/upload': '/upload', // rewrite path
+    '^/api/upload': '', // rewrite path
   },
 }));
 app.use('/api/account', accountRouter);

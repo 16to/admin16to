@@ -15,5 +15,5 @@ export default {
   collapse: true,
   language: 'zh-CN',
   copyright:"16to.com 一路向前",
-  imgBase:'http://localhost:3003/upload/',
+  imgBase:'http://g.16to.com/upload/',
 };
