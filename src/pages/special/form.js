@@ -27,9 +27,9 @@ class BasicForm extends PureComponent {
   }
 
   changeUpload = fileList => {
-    const { form, imgBase } = this.props;
+    const { form } = this.props;
     form.setFieldsValue({
-      img: (fileList[0] && fileList[0].response && imgBase + fileList[0].response.imagename) || '',
+      img: (fileList[0] && fileList[0].response && fileList[0].response.imagename) || '',
     });
   }
 
@@ -87,9 +87,9 @@ class BasicForm extends PureComponent {
             ],
           })(<Input placeholder="请输入背景色#000000" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label="单个图片">
+        <Form.Item {...formItemLayout} label="单个图片400*200">
           {getFieldDecorator('img', {
-            initialValue: updateData ? updateData && imgBase + updateData.img : '',
+            initialValue: updateData ? updateData && updateData.img : '',
             rules: [
               {
                 required: true,
@@ -98,7 +98,8 @@ class BasicForm extends PureComponent {
             ],
           })(<Input hidden />)}
           <UploadImg
-            initialValue={updateData ? updateData && imgBase + updateData.img : ''}
+            imgBase={imgBase}
+            initialValue={updateData ? updateData && updateData.img : ''}
             onChange={this.changeUpload}
           />
         </Form.Item>

@@ -33,7 +33,7 @@ app.use('/api/table', tableRouter);
 app.use('/api/login', loginRouter);
 // 上传需要代理到g.16to.com/upload上
 app.use('/api/upload', proxy({
-  target: 'http://localhost:3003',
+  target: 'http://g.16to.com',
   changeOrigin: true,
   pathRewrite: {
     '^/api/upload': '/upload', // rewrite path
@@ -44,9 +44,6 @@ app.use('/api/skill', skillRouter);
 app.use('/api/special', specialRouter);
 app.use('/api/works', worksRouter);
 app.use('/api/sysconfig', sysconfigRouter);
-
-// set upload
-app.use('/upload', express.static(path.join(__dirname, '../upload')));
 
 // set dist
 app.use(express.static(path.join(__dirname, '../dist')));

@@ -21,14 +21,14 @@ class UploadImg extends React.Component {
 
   // DOM挂载之前
   componentDidMount() {
-    const { initialValue } = this.props;
+    const { initialValue, imgBase } = this.props;
     this.setState({
       fileList: initialValue ? [{
         uid: -1,
         name: initialValue,
         status: 'done',
         response: { imagename: initialValue },
-        url: `${initialValue}`,
+        url: `${imgBase}${initialValue}`,
       }] : [],
     })
   }
