@@ -8,7 +8,6 @@ const bodyparser = require('body-parser');
 const proxy = require('http-proxy-middleware');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
-const config = require('../config/defaultSettings');
 
 // const route = require('./route');
 // router
@@ -34,10 +33,10 @@ app.use('/api/table', tableRouter);
 app.use('/api/login', loginRouter);
 // 上传需要代理到g.16to.com/upload上
 app.use('/api/upload', proxy({
-  target: config.imgBase,
+  target: 'http://localhost:3003',
   changeOrigin: true,
   pathRewrite: {
-    '^/api/upload': '', // rewrite path
+    '^/api/upload': '/upload', // rewrite path
   },
 }));
 app.use('/api/account', accountRouter);
