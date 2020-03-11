@@ -5,7 +5,8 @@ import React from 'react';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import GlobalFooter from '@/components/GlobalFooter';
-import logo from '../assets/logo.svg';
+// eslint-disable-next-line import/no-unresolved
+import logo from '../assets/logo64X64.png';
 import styles from './UserLayout.less';
 
 const UserLayout = props => {
