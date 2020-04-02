@@ -45,10 +45,6 @@ app.use('/api/special', specialRouter);
 app.use('/api/works', worksRouter);
 app.use('/api/sysconfig', sysconfigRouter);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4cd7d4d25a650706aadc07b344a01f8199929eae
 // set dist
 app.use(express.static(path.join(__dirname, '../dist')));
 

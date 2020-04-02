@@ -4,8 +4,9 @@ import MarkDownInput from '@/components/MarkDownInput'
 
 import { connect } from 'dva';
 
-@connect(({ sysconfig }) => ({
+@connect(({ sysconfig, settings }) => ({
   sysconfig: sysconfig.sysconfig,
+  imgBase: settings.imgBase,
 }))
 @Form.create()
 class BasicForm extends PureComponent {

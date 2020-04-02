@@ -138,6 +138,7 @@ class BasicForm extends PureComponent {
             initialValue: updateData && updateData.content ? unescape(updateData.content) : '',
           })(<Input hidden />)}
           <MarkDownInput
+            imgBase={imgBase}
             onChange = {this.changeCodeMirror}
             initialValue = {updateData && updateData.content ? unescape(updateData.content) : ''}
           />
