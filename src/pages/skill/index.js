@@ -23,6 +23,9 @@ class List extends PureComponent {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
+      render: (val, record) => (
+        <a onClick={() => this.updateBtn(record.id)}>{val}</a>
+      ),
     },
     {
       title: '作者',

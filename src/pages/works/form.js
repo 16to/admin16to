@@ -4,8 +4,9 @@ import { connect } from 'dva';
 import MarkDownInput from '@/components/MarkDownInput';
 import UploadImg from '@/components/UploadImg';
 
-@connect(({ sysconfig }) => ({
+@connect(({ sysconfig, settings }) => ({
   sysconfig: sysconfig.sysconfig,
+  imgBase: settings.imgBase,
 }))
 @Form.create()
 class BasicForm extends PureComponent {
@@ -35,7 +36,7 @@ class BasicForm extends PureComponent {
   // jsx渲染
   render() {
     // 页面内容
-    const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
+    const { updateData, form: { getFieldDecorator }, sysconfig, imgBase } = this.props;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -75,7 +76,7 @@ class BasicForm extends PureComponent {
             ],
           })(<Input placeholder="请输入网址" />)}
         </Form.Item>
-        <Form.Item {...formItemLayout} label="单个图片">
+        <Form.Item {...formItemLayout} label="单个图片220*200">
           {getFieldDecorator('img', {
             initialValue: updateData ? updateData && updateData.img : '',
             rules: [
@@ -86,6 +87,7 @@ class BasicForm extends PureComponent {
             ],
           })(<Input hidden />)}
           <UploadImg
+            imgBase={imgBase}
             initialValue={updateData ? updateData && updateData.img : ''}
             onChange={this.changeUpload}
           />
