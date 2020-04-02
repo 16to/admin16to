@@ -29,7 +29,7 @@ class BasicForm extends PureComponent {
   // jsx渲染
   render() {
     // 页面内容
-    const { updateData, form: { getFieldDecorator }, sysconfig } = this.props;
+    const { updateData, form: { getFieldDecorator }, sysconfig, imgBase } = this.props;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -120,6 +120,7 @@ class BasicForm extends PureComponent {
             initialValue: updateData && updateData.content ? unescape(updateData.content) : '',
           })(<Input hidden />)}
           <MarkDownInput
+            imgBase={imgBase}
             onChange = {this.changeCodeMirror}
             initialValue = {updateData && updateData.content ? unescape(updateData.content) : ''}
           />
