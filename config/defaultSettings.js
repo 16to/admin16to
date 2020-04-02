@@ -15,5 +15,4 @@ export default {
   collapse: true,
   language: 'zh-CN',
   copyright:"16to.com 一路向前",
-  imgSrc:'/upload',
 };

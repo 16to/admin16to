@@ -36,8 +36,6 @@ app.use('/api/special', specialRouter);
 app.use('/api/works', worksRouter);
 app.use('/api/sysconfig', sysconfigRouter);
 
-// set upload
-app.use('/upload', express.static(path.join(__dirname, '../upload')));
 
 // set dist
 app.use(express.static(path.join(__dirname, '../dist')));
