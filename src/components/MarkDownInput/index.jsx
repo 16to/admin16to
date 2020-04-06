@@ -59,6 +59,7 @@ class MarkDownInput extends React.Component {
   };
 
   onPaste =(editor, e) => {
+    const { imgBase } = this.props;
     if (!(e.clipboardData && e.clipboardData.items)) {
       return;
     }
@@ -70,7 +71,7 @@ class MarkDownInput extends React.Component {
         this.editor = editor;
         uploadImgFromPaste(pasteFile, '/api/upload/paste', res => {
           // 设置上传图片粘贴值
-          editor.replaceSelection(`![](/upload/${res.imagename})`);
+          editor.replaceSelection(`![](${imgBase}${res.imagename})`);
         });
       }
     }
