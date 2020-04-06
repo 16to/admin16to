@@ -71,8 +71,8 @@ CREATE TABLE `xx_special` (
   KEY `sort` (`sort`)
 ) DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `xx_workss`;
-CREATE TABLE `xx_workss` (
+DROP TABLE IF EXISTS `xx_works`;
+CREATE TABLE `xx_works` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL DEFAULT '',
   `url` varchar(255) DEFAULT NULL,

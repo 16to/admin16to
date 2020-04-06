@@ -34,13 +34,13 @@ class UploadImg extends React.Component {
   }
 
   handleChange = info => {
-    const { onChange } = this.props;
+    const { onChange, imgBase } = this.props;
     let { fileList } = info;
     fileList = fileList.slice(-1);
     fileList = fileList.map(file => {
       const tmp = file;
       if (tmp.response) {
-        tmp.url = `${file.response.imagename}`;
+        tmp.url = `${imgBase}${file.response.imagename}`;
       }
       return tmp;
     });
