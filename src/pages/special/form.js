@@ -133,6 +133,22 @@ class BasicForm extends PureComponent {
             ],
           })(<InputNumber placeholder="请输入排序，数字越大越靠前" />)}
         </Form.Item>
+        <Form.Item {...formItemLayout} label="是否展示">
+          {getFieldDecorator('state', {
+            initialValue: updateData ? updateData && updateData.state : 1,
+            rules: [
+              {
+                required: true,
+                message: '必填',
+              },
+            ],
+          })(
+            <Select placeholder="选择显示状态">
+              <Select.Option key={1} value={1}>是</Select.Option>
+              <Select.Option key={0} value={0}>否</Select.Option>
+            </Select>,
+          )}
+        </Form.Item>
         <Form.Item {...formItemLayout} label={preView}>
           {getFieldDecorator('content', {
             initialValue: updateData && updateData.content ? unescape(updateData.content) : '',

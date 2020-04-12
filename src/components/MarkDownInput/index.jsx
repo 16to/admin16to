@@ -71,7 +71,7 @@ class MarkDownInput extends React.Component {
         this.editor = editor;
         uploadImgFromPaste(pasteFile, '/api/upload/paste', res => {
           // 设置上传图片粘贴值
-          editor.replaceSelection(`![](${imgBase}${res.imagename})`);
+          editor.replaceSelection(`![](${imgBase || ''}${res.imagename})`);
         });
       }
     }

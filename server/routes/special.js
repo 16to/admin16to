@@ -35,6 +35,7 @@ router.post('/', (req, res) => {
   insertData.content = escape(req.body.content);
   insertData.type = req.body.type;
   insertData.sort = req.body.sort;
+  insertData.state = req.body.state;
   db.Insert('xx_special', insertData, (err, response) => {
     res.send(response);
   });
@@ -52,6 +53,7 @@ router.put('/:id', (req, res) => {
   updateData.content = escape(req.body.content);
   updateData.type = req.body.type;
   updateData.sort = req.body.sort;
+  updateData.state = req.body.state;
   db.Update('xx_special', updateData, con, (err, response) => {
     res.send(response);
   });
