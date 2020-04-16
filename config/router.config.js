@@ -117,34 +117,34 @@ export default [
             ]
           },
           // 原创项目功能
-          {
-            path: "/works",
-            name: "works",
-            icon: "appstore",
-            component: "../layouts/ContentLayout",
-            routes: [
-              {
-                path: "/works",
-                hideInMenu: true,
-                component: "./works/index"
-              },
-              {
-                path: "/works/add",
-                name: "add",
-                hideInMenu: true,
-                component: "./works/add"
-              },
-              {
-                path: "/works/update/:id",
-                name: "update",
-                hideInMenu: true,
-                component: "./works/update"
-              },
-              {
-                component: "./404"
-              }
-            ]
-          },
+          // {
+          //   path: "/works",
+          //   name: "works",
+          //   icon: "appstore",
+          //   component: "../layouts/ContentLayout",
+          //   routes: [
+          //     {
+          //       path: "/works",
+          //       hideInMenu: true,
+          //       component: "./works/index"
+          //     },
+          //     {
+          //       path: "/works/add",
+          //       name: "add",
+          //       hideInMenu: true,
+          //       component: "./works/add"
+          //     },
+          //     {
+          //       path: "/works/update/:id",
+          //       name: "update",
+          //       hideInMenu: true,
+          //       component: "./works/update"
+          //     },
+          //     {
+          //       component: "./404"
+          //     }
+          //   ]
+          // },
           // 管理员信息
           {
             path: "/account",

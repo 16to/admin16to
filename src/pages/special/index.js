@@ -67,7 +67,7 @@ class List extends PureComponent {
       title: '是否展示',
       dataIndex: 'state',
       key: 'state',
-      // sorter: (a, b) => a.state - b.state,
+      sorter: (a, b) => b.state - a.state,
       render: val => (
         <span>{val ? '是' : '否'}</span>
       ),
