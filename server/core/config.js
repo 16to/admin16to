@@ -39,6 +39,9 @@ module.exports = {
       'Sublime',
       'Vue',
       'Python',
+      'React',
+      'TypeScript',
+      'webpack',
     ],
     specialType: [
       '前端专题',
