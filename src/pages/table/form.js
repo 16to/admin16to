@@ -160,7 +160,7 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择创建人" showSearch>
+            <Select placeholder="请选择创建人" showSearch optionFilterProp="children">
               <Select.Option value="zj">zj</Select.Option>
               <Select.Option value="hz">hz</Select.Option>
             </Select>,

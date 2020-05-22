@@ -76,7 +76,7 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择类型" showSearch>
+            <Select placeholder="请选择类型" showSearch optionFilterProp="children">
               {
                 sysconfig.skillType && sysconfig.skillType.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>
@@ -95,7 +95,7 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择标签" showSearch>
+            <Select placeholder="请选择标签" showSearch optionFilterProp="children">
               {
                 sysconfig.skillTag && sysconfig.skillTag.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>

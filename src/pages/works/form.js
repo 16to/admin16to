@@ -102,7 +102,7 @@ class BasicForm extends PureComponent {
               },
             ],
           })(
-            <Select placeholder="请选择类型" showSearch>
+            <Select placeholder="请选择类型" showSearch optionFilterProp="children">
               {
                 sysconfig.worksType && sysconfig.worksType.map((item, index) => (
                 <Select.Option key={item} value={index}>{item}</Select.Option>
