@@ -11,6 +11,14 @@ const conn = require('./dbConfig');
 
 const connection = conn();
 
+connection.connect(function (err) {
+  if (err) {
+      console.log('[mysql] - :' + err);
+      return;
+  }
+  console.log('mysql connection succeed!');
+});
+
 // 执行
 const Query = (sql, callback) => {
   connection.query(sql, callback);
